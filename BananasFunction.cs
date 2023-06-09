@@ -35,7 +35,7 @@ namespace CavendishBanana
         }
 
         [FunctionName("Test")]
-        public async Task<IActionResult> Test(
+        public IActionResult Test(
            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "test")] ChatCompletionRequestDTO body,
            ILogger logger)
         {
@@ -80,11 +80,11 @@ namespace CavendishBanana
                 watcher.Stop();
                 logger.LogInformation($"Chat Stream Complete after {watcher.Elapsed}");
 
-                var md = this.mdConverter.Convert(content.ToString());
+                // var md = this.mdConverter.Convert();
 
                 var result = new ChatCompletionResponseDTO()
                 {
-                    Message = new ChatMessageDTO() { Role = ChatMessageRoles.Assistant, Content = md }
+                    Message = new ChatMessageDTO() { Role = ChatMessageRoles.Assistant, Content = content.ToString() }
                 };
 
                 return new JsonResult(result);

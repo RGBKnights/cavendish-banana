@@ -7,7 +7,7 @@ namespace CavendishBanana.DTO
     public class ChatCompletionRequestDTO
     {
         [JsonProperty("user")]
-        public string? User { get; set; }
+        public string User { get; set; }
 
         [JsonProperty("history")]
         public List<ChatMessageDTO> Messages { get; set; }
